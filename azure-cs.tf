@@ -1,14 +1,14 @@
 provider "azurerm" {
-  subscription_id = "8af4cf95-72ee-4d74-b5bd-f5b747f7eb95"
-  client_id       = "ab334d40-ee40-4a9b-8dcc-409b7ce5cec2"
-  tenant_id       = "9dd27dfc-8122-4d16-bae8-0327f555ae78"
+  subscription_id = var.subscription_id
+  client_id       = var.client_id
+  tenant_id       = var.tenant_id
   version = "=2.0.0"
   features {}
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "TERRAFORM-RG01"
-  location = "australiaeast"
+  name     = var.resource_group_name
+  location = var.region
 }
 
 resource "azurerm_virtual_network" "network" {
@@ -105,7 +105,7 @@ resource "azurerm_virtual_machine_extension" "csserver" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "apt-get update && apt-get install -y docker.io && docker run -d -p 26900:26900/udp -p 27020:27020/udp -p 27015:27015/udp -p 27015:27015 -e MAXPLAYERS=32 -e START_MAP=de_dust2 -e SERVER_NAME='my Server Name' -e START_MONEY=16000 -e BUY_TIME=0.25 -e FRIENDLY_FIRE=1 -e ADMIN_STEAM=0:1:1234566 --name cs cs16ds/server:latest +log && exit 0"
+        "commandToExecute": "apt-get update && apt-get install -y docker.io && docker run -d -p 26900:26900/udp -p 27020:27020/udp -p 27015:27015/udp -p 27015:27015 -e MAXPLAYERS=32 -e START_MAP=de_dust2 -e SERVER_NAME='cop cs server' -e START_MONEY=800 -e BUY_TIME=0.25 -e FRIENDLY_FIRE=1 -e ADMIN_STEAM=0:1:1234566 -e SERVER_PASSWORD=cop123 -e RCON_PASSWORD=awesome --name cs cs16ds/server:latest +log && exit 0"
     }
 SETTINGS
 
