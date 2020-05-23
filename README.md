@@ -26,15 +26,27 @@ az account list
 az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<subscription-id>"
 ```
 
+#### Secrets
+
+Keep the secrets in `secret.tfvars` as 
+
+```terraform
+region = "eastasia"
+subscription_id = "your subsciption id"
+client_id       = "your client id"
+tenant_id       = "your tenant id"
+```
+
 #### Start
 
 ```
-terraform plan
-terraform apply
+terraform init
+terraform plan  -var-file="secret.tfvars"
+terraform apply  -var-file="secret.tfvars"
 ```
 
 #### Stop
 
 ```
-terraform destroy
+terraform destroy  -var-file="secret.tfvars"
 ```

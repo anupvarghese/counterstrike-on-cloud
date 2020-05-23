@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "resource_group_name" {
-  default = "TERRAFORM-RG02"
+  default = "TERRAFORM-RG03"
 }
 
 variable "subscription_id" {
