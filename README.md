@@ -1,12 +1,14 @@
-### Run CS 1.6 server on Azure
+### Run CS 1.6 server on Azure/AWS
 
 ### Steps
 
-- Install terraform, azure cli are installed
+- Install terraform, azure cli/awscli are installed
 
 ```
-brew install terraform azure-cli
+brew install terraform azure-cli awscli
 ```
+
+#### Azure 
 
 - Login to Azure
 
@@ -37,7 +39,27 @@ client_id       = "your client id"
 tenant_id       = "your tenant id"
 ```
 
-#### Start
+
+#### AWS 
+
+Create secret key and access key add that in secrets
+
+#### Secrets
+
+Keep the secrets in `secret.tfvars` as 
+
+```terraform
+access_key = "your access key"
+secret_key = "your secret key"
+region       = "ap-southeast-1"
+instance_type       = "t3.micro"
+availability_zone = "ap-southeast-1a"
+# check if the AMI is available in the region
+instance_ami = "ami-01c54eee4ab8725c0"
+```
+
+
+#### Start (from aws/azure folder)
 
 ```
 terraform init
@@ -50,3 +72,4 @@ terraform apply  -var-file="secret.tfvars"
 ```
 terraform destroy  -var-file="secret.tfvars"
 ```
+
