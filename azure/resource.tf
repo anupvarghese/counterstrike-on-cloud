@@ -33,7 +33,7 @@ resource "azurerm_public_ip" "cspip" {
   idle_timeout_in_minutes = 30
 
   tags = {
-    environment = "staging"
+    environment = var.environment_tag
   }
 }
 
@@ -84,7 +84,7 @@ resource "azurerm_virtual_machine" "csserver" {
   }
 
   tags = {
-    environment = "staging"
+    environment = var.environment_tag
   }
 }
 
@@ -104,6 +104,6 @@ SETTINGS
 
 
   tags = {
-    environment = "staging"
+    environment = var.environment_tag
   }
 }

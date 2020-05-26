@@ -37,3 +37,8 @@ variable "vm_size" {
   description = "Azure VM Size"
   default = "Standard_DS1_v2"
 }
+
+variable "environment_tag" {
+  description = "Environment tag"
+  default = "Staging"
+}
