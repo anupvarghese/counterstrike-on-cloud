@@ -41,6 +41,7 @@ resource "azurerm_network_interface" "demonic" {
   name                = "demo-vm-nic"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  enable_accelerated_networking = true # works only with certain SKUs
 
   ip_configuration {
     name                          = "NICConfiguration"
@@ -67,7 +68,7 @@ resource "azurerm_virtual_machine" "csserver" {
     name              = "myosdisk1"
     caching           = "ReadWrite"
     create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
+    managed_disk_type = "Standard_F2"
   }
   os_profile {
     computer_name  = "terraformserver"
