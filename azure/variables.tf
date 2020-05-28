@@ -38,6 +38,10 @@ variable "vm_size" {
   default = "Standard_DS1_v2"
 }
 
+variable "storage_disk_type" {
+  description = "Managed disk type"
+  default = "Standard_F2"
+}
 variable "environment_tag" {
   description = "Environment tag"
   default = "Staging"
